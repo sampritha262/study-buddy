@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyBuddy | Student Life Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">✦</span> StudyBuddy</a>
+    <span class="top-note">Your everyday study companion</span>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+        <h1>Make today a <span>great study day.</span></h1>
+        <p class="hero-copy">Plan your time, keep track of assignments, and practise a little every day.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun">✦</div><div class="book">📚</div><div class="plant">🌱</div>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><span class="stat-icon purple">▤</span><div><p>Total tasks</p><strong id="totalTasks">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Completed</p><strong id="completedTasks">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><p>Study sessions</p><strong id="sessionCount">0</strong></div></article>
+    </section>
+
+    <nav class="tabs" aria-label="Study tools">
+      <button class="tab active" data-panel="plannerPanel">📅 Study Planner</button>
+      <button class="tab" data-panel="tasksPanel">☑ Assignment Tracker</button>
+      <button class="tab" data-panel="chatPanel">💬 Study Buddy</button>
+      <button class="tab" data-panel="quizPanel">✏️ Quick Quiz</button>
+    </nav>
+
+    <section id="plannerPanel" class="panel active">
+      <div class="section-heading">
+        <div><p class="eyebrow">PLAN WITH PURPOSE</p><h2>Build your study plan</h2></div>
+        <span class="pill">Personalized schedule</span>
+      </div>
+      <form id="plannerForm" class="form-card">
+        <label>Subjects to study
+          <input id="subjects" type="text" placeholder="e.g. Computer Networks, Python, DBMS" required>
+        </label>
+        <div class="form-row">
+          <label>Available time (hours)
+            <input id="hours" type="number" min="1" max="12" value="3" required>
+          </label>
+          <label>Break between subjects
+            <select id="breakMinutes"><option value="5">5 minutes</option><option value="10" selected>10 minutes</option><option value="15">15 minutes</option></select>
+          </label>
+        </div>
+        <button class="primary-btn" type="submit">✨ Create my timetable</button>
+      </form>
+      <div id="planOutput" class="output-card empty-state">Your timetable will appear here after you create it.</div>
+    </section>
+
+    <section id="tasksPanel" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">STAY ON TRACK</p><h2>Assignment tracker</h2></div><span class="pill">Saved on this device</span></div>
+      <form id="taskForm" class="form-card">
+        <label>Assignment or task
+          <input id="taskName" type="text" placeholder="e.g. Revise Unit 2" required>
+        </label>
+        <div class="form-row">
+          <label>Subject
+            <input id="taskSubject" type="text" placeholder="e.g. Data Mining">
+          </label>
+          <label>Due date
+            <input id="taskDate" type="date">
+          </label>
+        </div>
+        <button class="primary-btn" type="submit">＋ Add assignment</button>
+      </form>
+      <div id="taskList" class="task-list"></div>
+    </section>
+
+    <section id="chatPanel" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">A LITTLE HELP GOES A LONG WAY</p><h2>Chat with Study Buddy</h2></div><span class="pill">Study tips assistant</span></div>
+      <div class="chat-card">
+        <div id="chatMessages" class="chat-messages">
+          <div class="bubble bot-bubble">Hi! 👋 I can share study tips, help you plan revision, or explain a few beginner programming concepts. What would you like help with?</div>
+        </div>
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="Give me study tips">Study tips</button>
+          <button class="suggestion" data-prompt="How should I prepare for an exam?">Exam preparation</button>
+          <button class="suggestion" data-prompt="Explain HTML">Explain HTML</button>
+        </div>
+        <form id="chatForm" class="chat-input-row">
+          <input id="chatInput" type="text" placeholder="Ask a study question..." autocomplete="off" required>
+          <button class="primary-btn" type="submit">Send ↗</button>
+        </form>
+        <p class="small-note">This demo uses built-in responses. Connect an AI API to enable open-ended AI answers.</p>
+      </div>
+    </section>
+
+    <section id="quizPanel" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">PRACTISE AND LEARN</p><h2>Quick knowledge quiz</h2></div><span class="pill">3 questions</span></div>
+      <div class="quiz-card">
+        <div class="quiz-progress"><span id="quizProgress">Question 1 of 3</span><span id="quizScore">Score: 0</span></div>
+        <div class="progress-track"><div id="progressFill"></div></div>
+        <h3 id="quizQuestion"></h3>
+        <div id="quizOptions" class="quiz-options"></div>
+        <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+        <button id="nextQuestion" class="primary-btn" disabled>Next question →</button>
+      </div>
+    </section>
+
+    <footer>Made for students, one small step at a time. <span>✦</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
